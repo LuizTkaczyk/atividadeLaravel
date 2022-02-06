@@ -1,16 +1,18 @@
-<h3>Rota funcionando</h3>
+@extends('property.master')
+@section('content')
 
-<p> <a href=" <?= url('/carros/novo');  ?>">Cadastrar novo veículo</a> </p>
+<div class="container my-3 w-50">
+<h3>Lista de veículos cadastrados</h3>
 
 <?php
 if (!empty($properties)) {
-    echo "<table>";
-    echo "<tr>
+    echo "<table class='table table-striped table-hover'>";
+    echo "<thead class='bg-primary text-white'>
             <td>Título</td>
             <td>Valor de Locação</td>
             <td>Valor de venda</td>
             <td>Ações</td>
-         </tr>";
+         </thead>";
 
     foreach ($properties as $property) {
 
@@ -22,7 +24,7 @@ if (!empty($properties)) {
                 <td>{$property->title}</td>
                 <td>R$ " . number_format($property->rental_price, 2, ',', '.') . "</td>
                 <td>R$ " . number_format($property->sale_price, 2, ',', '.') . "</td>
-                <td> <a href='{$linkReadMore}'>Ver mais </a> | <a href='{$linkEditItem}'>Editar</a> | <a href='{$linkRemoveItem}'>Remover</a> </td>
+                <td> <a href='{$linkReadMore}' class='text-decoration-none'>Ver mais </a> | <a href='{$linkEditItem}' class='text-decoration-none'>Editar</a> | <a href='{$linkRemoveItem}' class='text-decoration-none'>Remover</a> </td>
         
         </tr>";
 
@@ -31,3 +33,6 @@ if (!empty($properties)) {
 
     echo "</table>";
 }
+?>
+</div>
+@endsection
